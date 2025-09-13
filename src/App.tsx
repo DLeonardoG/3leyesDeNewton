@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from './layouts/layout';
 import Home from './components/home';
 import Infografia from './components/infografia';
+import VideoGallery from './components/video-gallery';
 
 function App() {
 const router = createBrowserRouter([
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
            path: "info",
            element: (
                <Infografia />
+           ),
+         },
+         {
+           path: "videos",
+           element: (
+               <VideoGallery />
            ),
          },
         // {

@@ -51,15 +51,6 @@ const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-          {/* Sign In Button */}
-          <div className="hidden md:block">
-            <button 
-              onClick={onSignInClick}
-              className="bg-white text-blue-900 px-4 py-2 rounded-md font-medium hover:bg-blue-100 transition-colors"
-            >
-              {signInButtonLabel}
-            </button>
-          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -95,15 +86,6 @@ const Header: React.FC<HeaderProps> = ({
                 {item.label}
               </NavLink>
             ))}
-            <button 
-              onClick={() => {
-                onSignInClick();
-                handleMobileLinkClick();
-              }}
-              className="w-full bg-white text-blue-900 px-4 py-2 rounded-md font-medium hover:bg-blue-100 transition-colors mt-2"
-            >
-              {signInButtonLabel}
-            </button>
           </nav>
         )}
       </div>

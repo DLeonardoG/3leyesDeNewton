@@ -5,7 +5,9 @@ import { Outlet } from 'react-router-dom';
 const Layout = () => {
 
      const navItems = [
-    { to: '/', label: 'HOME' },
+    { to: '/', label: 'Inicio' },
+    { to: '/videos', label: 'Videos' },
+    { to: '/info', label: 'Comics' },
     { to: '/info', label: 'Infografia' },
   ];
 
@@ -15,7 +17,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header 
-        brandName="GASLUR"
+        brandName="3 Leyes"
         navItems={navItems}
         signInButtonLabel="SIGN IN"
         onSignInClick={handleSignIn}
