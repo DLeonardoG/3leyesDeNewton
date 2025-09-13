@@ -1,4 +1,4 @@
-import Header from "@/components/nav-bar"
+import Header from "../components/nav-bar"
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
