@@ -1,5 +1,22 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { 
+  Sheet, 
+  SheetContent, 
+  SheetTrigger, 
+  SheetClose 
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
+import { 
+  NavigationMenu, 
+  NavigationMenuItem, 
+  NavigationMenuList, 
+  NavigationMenuLink,
+  navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu';
+import { cn } from '@/lib/utils';
+import { Menu, X } from 'lucide-react';
 
 interface NavItem {
   to: string;
@@ -9,82 +26,95 @@ interface NavItem {
 interface HeaderProps {
   brandName: string;
   navItems: NavItem[];
-  signInButtonLabel: string;
-  onSignInClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ 
-  brandName, 
-  navItems, 
-}) => {
+const Header: React.FC<HeaderProps> = ({ brandName, navItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const handleMobileLinkClick = () => {
     setIsMenuOpen(false);
   };
 
   return (
-    <header className="bg-blue-900 text-white shadow-lg">
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-white">{brandName}</h1>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
-            {navItems.map((item, index) => (
-              <NavLink 
-                key={index}
-                to={item.to} 
-                className={({ isActive }) => 
-                  `hover:text-blue-200 transition-colors ${isActive ? 'text-blue-300 font-semibold' : ''}`
-                }
-                end={item.to === '/'}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        {/* Logo and Brand */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-2">
+            <div className="h-8 w-8 rounded-md bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">N</span>
+            </div>
+            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {brandName}
+            </h1>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-3">
+        {/* Desktop Navigation */}
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList>
             {navItems.map((item, index) => (
-              <NavLink 
-                key={index}
-                to={item.to} 
-                className={({ isActive }) => 
-                  `block py-2 transition-colors ${isActive ? 'text-blue-300 font-semibold' : 'hover:text-blue-200'}`
-                }
-                onClick={handleMobileLinkClick}
-                end={item.to === '/'}
-              >
-                {item.label}
-              </NavLink>
+              <NavigationMenuItem key={index}>
+                <NavLink to={item.to} end={item.to === '/'}>
+                  <NavigationMenuLink 
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      location.pathname === item.to 
+                        ? "bg-accent text-accent-foreground" 
+                        : "hover:bg-accent/50"
+                    )}
+                  >
+                    {item.label}
+                  </NavigationMenuLink>
+                </NavLink>
+
+              </NavigationMenuItem>
+              
             ))}
-          </nav>
-        )}
+          </NavigationMenuList>
+            <ModeToggle></ModeToggle>
+        </NavigationMenu>
+
+        {/* Mobile Navigation Sheet */}
+        <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon">
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <nav className="flex flex-col gap-4 mt-8">
+              <div className="flex items-center space-x-2 mb-6">
+                <div className="h-8 w-8 rounded-md bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">N</span>
+                </div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  {brandName}
+                </h1>
+              </div>
+              
+              {navItems.map((item, index) => (
+                <SheetClose asChild key={index}>
+                  <NavLink 
+                    to={item.to} 
+                    className={({ isActive }) => 
+                      cn(
+                        "flex w-full items-center py-2 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 px-4 rounded-md",
+                        isActive ? "bg-accent text-accent-foreground" : "text-foreground/70"
+                      )
+                    }
+                    onClick={handleMobileLinkClick}
+                    end={item.to === '/'}
+                  >
+                    {item.label}
+                  </NavLink>
+                </SheetClose>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   );
