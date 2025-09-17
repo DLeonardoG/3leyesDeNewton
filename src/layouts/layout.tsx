@@ -9,17 +9,11 @@ const Layout = () => {
     { to: '/info', label: 'Comics' },
     { to: '/info', label: 'Infografia' },
   ];
-
-    const handleSignIn = () => {
-    console.log('Sign In clicked');
-  };
   return (
     <div className="min-h-screen flex flex-col">
       <Header 
         brandName="3 Leyes"
         navItems={navItems}
-        signInButtonLabel="SIGN IN"
-        onSignInClick={handleSignIn}
       />
       <main className="flex-grow container mx-auto px-4 py-6">
         <Outlet />

@@ -1,4 +1,24 @@
 import React, { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { X, Clock, Play, Info } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface VideoCardProps {
   youtubeId: string;
@@ -25,90 +45,120 @@ const VideoCard: React.FC<VideoCardProps> = ({
   return (
     <>
       {/* Card */}
-      <div 
-        className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
+      <Card 
+        className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg"
         onClick={openModal}
       >
-        <div className="relative">
+        <div className="relative overflow-hidden">
           <img 
             src={thumbnailSrc} 
             alt={title}
-            className="w-full h-48 object-cover"
+            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">
-            {duration}
-          </div>
-          {category && (
-            <div className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs">
-              {category}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+            <div className="scale-0 group-hover:scale-100 transition-transform duration-300">
+              <Play className="h-12 w-12 text-white fill-white/20" />
             </div>
+          </div>
+          
+          {/* Duration Badge */}
+          <Badge variant="secondary" className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm">
+            <Clock className="h-3 w-3 mr-1" />
+            {duration}
+          </Badge>
+          
+          {/* Category Badge */}
+          {category && (
+            <Badge className="absolute top-2 left-2 bg-primary/90">
+              {category}
+            </Badge>
           )}
         </div>
-        <div className="p-4">
-          <h3 className="font-semibold text-lg mb-2">{title}</h3>
-          <p className="text-gray-600 text-sm line-clamp-2">{description}</p>
-        </div>
-      </div>
+        
+        <CardHeader className="p-4 pb-2">
+          <CardTitle className="text-lg line-clamp-1">{title}</CardTitle>
+          <CardDescription className="line-clamp-2">{description}</CardDescription>
+        </CardHeader>
+        
+        <CardFooter className="p-4 pt-0">
+          <Button variant="outline" size="sm" className="w-full" onClick={openModal}>
+            <Play className="h-4 w-4 mr-2" />
+            Ver video
+          </Button>
+        </CardFooter>
+      </Card>
 
       {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-xl font-bold">{title}</h2>
-              <button 
-                onClick={closeModal}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden">
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm rounded-full"
+              onClick={closeModal}
+            >
+              <X className="h-4 w-4" />
+            </Button>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
               {/* YouTube Video */}
-              <div className="lg:col-span-2">
-                <div className="relative pb-[56.25%] h-0"> {/* 16:9 aspect ratio */}
+              <div className="lg:col-span-2 bg-muted">
+                <div className="relative pb-[56.25%] h-0">
                   <iframe
-                    className="absolute top-0 left-0 w-full h-full rounded-lg"
+                    className="absolute top-0 left-0 w-full h-full"
                     src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
                     title={title}
                     frameBorder="0"
-                    allow="autoplay; encrypted-media"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   />
                 </div>
               </div>
               
               {/* Descripción */}
-              <div className="lg:col-span-1">
-                <div className="bg-gray-50 p-4 rounded-lg h-full">
-                  <h3 className="font-semibold text-lg mb-3">Descripción</h3>
-                  <p className="text-gray-700 mb-4">{description}</p>
-                  
-                  <div className="space-y-2">
+              <div className="lg:col-span-1 p-6">
+                <DialogHeader>
+                  <DialogTitle className="text-xl">{title}</DialogTitle>
+                  <DialogDescription className="mt-2">
+                    {description}
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="mt-6 space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
                     {category && (
-                      <div className="flex items-center">
-                        <span className="text-gray-500 w-24">Categoría:</span>
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{category}</span>
+                      <div className="space-y-2">
+                        <Label htmlFor="category" className="text-muted-foreground">
+                          Categoría
+                        </Label>
+                        <Badge variant="secondary" className="w-full justify-center">
+                          {category}
+                        </Badge>
                       </div>
                     )}
-                    <div className="flex items-center">
-                      <span className="text-gray-500 w-24">Duración:</span>
-                      <span className="font-medium">{duration}</span>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="duration" className="text-muted-foreground">
+                        Duración
+                      </Label>
+                      <div className="flex items-center justify-center px-3 py-1 border rounded-md text-sm">
+                        <Clock className="h-4 w-4 mr-2" />
+                        {duration}
+                      </div>
                     </div>
                   </div>
                   
-                  <button className="mt-6 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
+                  <Button className="w-full mt-4">
+                    <Info className="h-4 w-4 mr-2" />
                     Ver más detalles
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
