@@ -1,27 +1,79 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+// Configurar GSAP
+gsap.registerPlugin(useGSAP);
 
 const slides = [
   {
     id: 1,
-    content: "First slide",
-    bg: "bg-base-200/60",
+    title: "Primera Ley de Newton",
+    subtitle: "Ley de Inercia",
+    content: "Un cuerpo permanece en reposo o en movimiento rectilíneo uniforme a menos que una fuerza externa actúe sobre él.",
+    bg: "bg-gradient-to-r from-blue-500/70 to-indigo-600/70",
+    example: "Cuando un vehículo frena bruscamente, tu cuerpo se inclina hacia adelante por inercia."
   },
   {
     id: 2,
-    content: "Second slide",
-    bg: "bg-base-200/80",
+    title: "Segunda Ley de Newton",
+    subtitle: "Ley Fundamental de la Dinámica",
+    content: "La fuerza neta aplicada sobre un cuerpo es proporcional a la aceleración que adquiere.",
+    bg: "bg-gradient-to-r from-green-500/70 to-teal-600/70",
+    example: "Empujar un carrito de supermercado: a mayor fuerza, mayor aceleración."
   },
   {
     id: 3,
-    content: "Third slide",
-    bg: "bg-base-200",
+    title: "Tercera Ley de Newton",
+    subtitle: "Ley de Acción-Reacción",
+    content: "Por cada acción hay una reacción igual y opuesta.",
+    bg: "bg-gradient-to-r from-amber-500/70 to-orange-600/70",
+    example: "Al caminar, empujas el suelo hacia atrás (acción) y el suelo te empuja hacia adelante (reacción)."
   },
 ];
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isAutoPlay = true;
-  const speed = 3000; // ms autoplay speed
+  const speed = 5000; // ms autoplay speed
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+
+  // Animaciones con GSAP
+  useGSAP(() => {
+    // Animación inicial del título
+    gsap.fromTo(titleRef.current, 
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+    
+    // Animación inicial del subtítulo
+    gsap.fromTo(subtitleRef.current, 
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
+    );
+    
+    // Animación de las tarjetas
+    gsap.fromTo(".newton-card",
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, delay: 0.6, ease: "back.out(1.7)" }
+    );
+  }, []);
+
+  // Animación al cambiar slides
+  useGSAP(() => {
+    if (!containerRef.current) return;
+    
+    const slides = containerRef.current.children;
+    gsap.fromTo(slides[currentIndex], 
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.7, ease: "power2.out" }
+    );
+  }, [currentIndex]);
 
   // autoplay effect
   useEffect(() => {
@@ -30,7 +82,7 @@ const Home = () => {
       nextSlide();
     }, speed);
     return () => clearInterval(interval);
-  }, [currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -45,61 +97,126 @@ const Home = () => {
   };
 
   return (
-    <section className="w-full h-full">
-      <div className="relative w-full">
-        {/* Carousel */}
-        <div className="overflow-hidden relative h-80">
-          <div
-            className="flex transition-transform duration-700 ease-in-out h-full"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+    <section className="w-full h-full min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-8 px-4">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header section */}
+        <div className="text-center mb-12">
+          <h1 
+            ref={titleRef}
+            className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
           >
-            {slides.map((slide) => (
-              <div
-                key={slide.id}
-                className={`flex-shrink-0 w-full h-full ${slide.bg} flex justify-center items-center`}
-              >
-                <span className="text-2xl sm:text-4xl">{slide.content}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Buttons */}
-          <button
-            onClick={prevSlide}
-            type="button"
-            className="absolute top-1/2 left-5 -translate-y-1/2 size-10 bg-base-100 flex items-center justify-center rounded-full shadow-base-300/20 shadow-sm hover:bg-base-200"
+            Bienvenidos a Newton Daily
+          </h1>
+          <p 
+            ref={subtitleRef}
+            className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto"
           >
-            <span className="icon-[tabler--chevron-left] size-5 cursor-pointer"></span>
-            <span className="sr-only">Previous</span>
-          </button>
-
-          <button
-            onClick={nextSlide}
-            type="button"
-            className="absolute top-1/2 right-5 -translate-y-1/2 size-10 bg-base-100 flex items-center justify-center rounded-full shadow-base-300/20 shadow-sm hover:bg-base-200"
-          >
-            <span className="icon-[tabler--chevron-right] size-5"></span>
-            <span className="sr-only">Next</span>
-          </button>
+            Descubre cómo las 3 Leyes de Newton explican los fenómenos de tu vida cotidiana
+          </p>
         </div>
 
-        {/* Optional indicators */}
-        <div className="flex justify-center mt-3 space-x-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-3 w-3 rounded-full ${
-                currentIndex === idx ? "bg-blue-500" : "bg-gray-300"
-              }`}
-            />
+        {/* Carousel Section */}
+        <div className="mb-16 rounded-xl overflow-hidden shadow-xl">
+          <div className="relative w-full">
+            {/* Carousel */}
+            <div className="overflow-hidden relative h-96 md:h-[500px] rounded-xl">
+              <div
+                ref={containerRef}
+                className="flex transition-transform duration-700 ease-in-out h-full"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {slides.map((slide) => (
+                  <div
+                    key={slide.id}
+                    className={`flex-shrink-0 w-full h-full ${slide.bg} flex flex-col justify-center items-center text-white p-8`}
+                  >
+                    <div className="text-center max-w-3xl">
+                      <h2 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h2>
+                      <h3 className="text-xl md:text-2xl font-semibold mb-6">{slide.subtitle}</h3>
+                      <p className="text-lg md:text-xl mb-6">{slide.content}</p>
+                      <div className="bg-white/20 p-4 rounded-lg backdrop-blur-sm">
+                        <p className="text-sm md:text-base italic">Ejemplo en la vida diaria: {slide.example}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Buttons */}
+              <Button
+                onClick={prevSlide}
+                variant="outline"
+                size="icon"
+                className="absolute top-1/2 left-5 -translate-y-1/2 size-12 bg-white/80 hover:bg-white rounded-full shadow-lg"
+              >
+                <ChevronLeft className="h-6 w-6" />
+                <span className="sr-only">Previous</span>
+              </Button>
+
+              <Button
+                onClick={nextSlide}
+                variant="outline"
+                size="icon"
+                className="absolute top-1/2 right-5 -translate-y-1/2 size-12 bg-white/80 hover:bg-white rounded-full shadow-lg"
+              >
+                <ChevronRight className="h-6 w-6" />
+                <span className="sr-only">Next</span>
+              </Button>
+            </div>
+
+            {/* Indicators */}
+            <div className="absolute bottom-4 left-0 right-0">
+              <div className="flex justify-center space-x-2">
+                {slides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
+                      currentIndex === idx ? "bg-white scale-125" : "bg-white/50"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Cards Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {slides.map((slide, index) => (
+            <Card 
+              key={slide.id} 
+              className="newton-card overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <CardHeader className={`${slide.bg} text-white pb-3`}>
+                <CardTitle className="text-xl">{slide.title}</CardTitle>
+                <CardDescription className="text-white/90">{slide.subtitle}</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <p className="mb-4">{slide.content}</p>
+                <div className="bg-slate-100 p-3 rounded-lg">
+                  <p className="text-sm text-slate-700 italic">Ejemplo: {slide.example}</p>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
-      </div>
 
-      <div className="mt-8 text-center">
-        <h1 className="text-xl font-bold">Las 3 Leyes de Newton</h1>
-        <p className="text-gray-600">Explicación</p>
+        {/* CTA Section */}
+        <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-xl">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">¿Quieres aprender más?</h2>
+          <p className="text-lg mb-6 max-w-2xl mx-auto">
+            Explora nuestro contenido interactivo para entender cómo las Leyes de Newton gobiernan cada aspecto de tu vida diaria.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
+              Comenzar Tutorial
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              Ver Ejemplos
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
