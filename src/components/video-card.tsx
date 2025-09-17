@@ -101,7 +101,7 @@ const VideoCard: React.FC<VideoCardProps> = ({
               <X className="h-4 w-4" />
             </Button>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-0">
               {/* YouTube Video */}
               <div className="lg:col-span-2 bg-muted">
                 <div className="relative pb-[56.25%] h-0">
