@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Configurar GSAP
+
 gsap.registerPlugin(useGSAP);
 
 const slides = [
@@ -43,28 +43,23 @@ const Home = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
-  // Animaciones con GSAP
   useGSAP(() => {
-    // Animación inicial del título
     gsap.fromTo(titleRef.current, 
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
     );
     
-    // Animación inicial del subtítulo
     gsap.fromTo(subtitleRef.current, 
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
     );
     
-    // Animación de las tarjetas
     gsap.fromTo(".newton-card",
       { y: 40, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, delay: 0.6, ease: "back.out(1.7)" }
     );
   }, []);
 
-  // Animación al cambiar slides
   useGSAP(() => {
     if (!containerRef.current) return;
     
@@ -75,7 +70,6 @@ const Home = () => {
     );
   }, [currentIndex]);
 
-  // autoplay effect
   useEffect(() => {
     if (!isAutoPlay) return;
     const interval = setInterval(() => {
@@ -99,7 +93,6 @@ const Home = () => {
   return (
     <section className="w-full h-full min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-8 px-4">
       <div className="container mx-auto max-w-6xl">
-        {/* Header section */}
         <div className="text-center mb-12">
           <h1 
             ref={titleRef}
@@ -183,7 +176,7 @@ const Home = () => {
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {slides.map((slide, index) => (
+          {slides.map((slide) => (
             <Card 
               key={slide.id} 
               className="newton-card overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300"

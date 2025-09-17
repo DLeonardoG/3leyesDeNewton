@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Card,
-  CardContent,
+  // CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { X, Clock, Play, Info } from "lucide-react";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 
 interface VideoCardProps {
   youtubeId: string;
