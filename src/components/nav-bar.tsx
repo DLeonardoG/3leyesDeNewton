@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-// Definición de tipos
 interface NavItem {
   to: string;
   label: string;
@@ -17,8 +16,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ 
   brandName, 
   navItems, 
-  signInButtonLabel, 
-  onSignInClick 
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
