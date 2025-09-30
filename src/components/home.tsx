@@ -98,13 +98,13 @@ const Home = () => {
             ref={titleRef}
             className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
           >
-            Bienvenidos a Newton Daily
+            Bienvenidos!!!
           </h1>
           <p 
             ref={subtitleRef}
             className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto"
           >
-            Descubre cómo las 3 Leyes de Newton explican los fenómenos de tu vida cotidiana
+            Las tres leyes que ya usas sin darte cuenta, explicada con ejemplos reales.
           </p>
         </div>
 

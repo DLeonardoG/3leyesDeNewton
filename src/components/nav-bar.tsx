@@ -7,7 +7,7 @@ import {
   SheetClose 
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { ModeToggle } from '@/components/mode-toggle';
+// import { ModeToggle } from '@/components/mode-toggle';
 import { 
   NavigationMenu, 
   NavigationMenuItem, 
@@ -16,7 +16,7 @@ import {
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ExternalLink } from 'lucide-react';
 
 interface NavItem {
   to: string;
@@ -26,14 +26,19 @@ interface NavItem {
 interface HeaderProps {
   brandName: string;
   navItems: NavItem[];
+  evaluateUrl?: string; // Nueva prop opcional para la URL de evaluate
 }
 
-const Header: React.FC<HeaderProps> = ({ brandName, navItems }) => {
+const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "https://wordwall.net/es/resource/98587855/f%c3%adsica/leyes-de-newton" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const handleMobileLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleEvaluateClick = () => {
+    window.open(evaluateUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -68,12 +73,22 @@ const Header: React.FC<HeaderProps> = ({ brandName, navItems }) => {
                     {item.label}
                   </NavigationMenuLink>
                 </NavLink>
-
               </NavigationMenuItem>
-              
             ))}
+            
+            {/* Botón Evaluate para desktop */}
+            <NavigationMenuItem>
+              <Button
+                variant="default"
+                className="ml-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                onClick={handleEvaluateClick}
+              >
+                Evaluate
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </Button>
+            </NavigationMenuItem>
           </NavigationMenuList>
-            <ModeToggle></ModeToggle>
+          {/* <ModeToggle></ModeToggle> */}
         </NavigationMenu>
 
         {/* Mobile Navigation Sheet */}
@@ -112,6 +127,18 @@ const Header: React.FC<HeaderProps> = ({ brandName, navItems }) => {
                   </NavLink>
                 </SheetClose>
               ))}
+              
+              {/* Botón Evaluate para mobile */}
+              <SheetClose asChild>
+                <Button
+                  variant="default"
+                  className="mt-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  onClick={handleEvaluateClick}
+                >
+                  Evaluate
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Button>
+              </SheetClose>
             </nav>
           </SheetContent>
         </Sheet>

@@ -13,7 +13,7 @@ const mockComics: Comic[] = [
     description: 'Primera Ley',
     author: '',
     publishedDate: '2024',
-    category: 'Aventura',
+    category: 'Ciencia',
 pages: [
       { id: '1-1', image: '/comics/primera_ley-001.png', title: 'Página 1' },
       { id: '1-2', image: '/comics/primera_ley-002.png', title: 'Página 2' },
@@ -30,7 +30,7 @@ pages: [
     description: 'Sgunda Ley',
     author: '',
     publishedDate: '2024',
-    category: 'Aventura',
+    category: 'Ciencia',
 pages: [
       { id: '1-1', image: '/comics/segunda_ley/segunda_ley-001.png', title: 'Página 1' },
       { id: '1-2', image: '/comics/segunda_ley/segunda_ley-002.png', title: 'Página 2' },
@@ -47,7 +47,7 @@ pages: [
     description: 'Tercera Ley',
     author: '',
     publishedDate: '2024',
-    category: 'Aventura',
+    category: 'Ciencia',
 pages: [
       { id: '1-1', image: '/comics/tercera_ley/tercera_ley_de_newton_-001.png', title: 'Página 1' },
       { id: '1-2', image: '/comics/tercera_ley/tercera_ley_de_newton_-002.png', title: 'Página 2' },
