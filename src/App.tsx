@@ -5,6 +5,7 @@ import Infografia from './components/infografia';
 import VideoGallery from './components/video-gallery';
 
 import { ThemeProvider } from "@/components/theme-provider"
+import ComicsSection from "./components/comics/ComicsSection";
 
 function App() {
   const router = createBrowserRouter([
@@ -12,29 +13,10 @@ function App() {
       path: "/",
       element: <Layout />,
       children: [
-        {
-          index: true, element: (
-            <Home />
-          ),
-        },
-        {
-          path: "home",
-          element: (
-            <Home />
-          ),
-        },
-        {
-          path: "info",
-          element: (
-            <Infografia />
-          ),
-        },
-        {
-          path: "videos",
-          element: (
-            <VideoGallery />
-          ),
-        },
+        { index: true, element: ( <Home />  ), },
+        { path: "home", element: ( <Home /> ), },
+        { path: "info", element: ( < ComicsSection/> ), },
+        { path: "videos", element: ( <VideoGallery /> ), },
         // {
         //   path: "calendar",
         //   element: (
