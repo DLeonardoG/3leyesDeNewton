@@ -196,7 +196,7 @@ const Home = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-xl">
+        {/* <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-xl">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">¿Quieres aprender más?</h2>
           <p className="text-lg mb-6 max-w-2xl mx-auto">
             Explora nuestro contenido interactivo para entender cómo las Leyes de Newton gobiernan cada aspecto de tu vida diaria.
@@ -209,7 +209,7 @@ const Home = () => {
               Ver Ejemplos
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
