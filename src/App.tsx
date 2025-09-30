@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from './layouts/layout';
 import Home from './components/home';
-import Infografia from './components/infografia';
+// import Infografia from './components/infografia';
 import VideoGallery from './components/video-gallery';
 
 import { ThemeProvider } from "@/components/theme-provider"
 import ComicsSection from "./components/comics/ComicsSection";
+import InfographicsSection from "./components/infografia/components/InfographicsSection";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +16,9 @@ function App() {
       children: [
         { index: true, element: ( <Home />  ), },
         { path: "home", element: ( <Home /> ), },
-        { path: "info", element: ( < ComicsSection/> ), },
+        { path: "comics", element: ( < ComicsSection/> ), },
         { path: "videos", element: ( <VideoGallery /> ), },
+        { path: "infografias", element: ( <InfographicsSection /> ), },
         // {
         //   path: "calendar",
         //   element: (

@@ -1,4 +1,3 @@
-// hooks/useKeyboardNavigation.ts
 import { useEffect } from 'react';
 
 export function useKeyboardNavigation(
@@ -23,6 +22,10 @@ export function useKeyboardNavigation(
         case 'Escape':
           e.preventDefault();
           onClose();
+          break;
+        case ' ':
+          e.preventDefault();
+          onNext();
           break;
       }
     };

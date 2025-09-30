@@ -1,8 +1,8 @@
 // components/comics/ComicModal.tsx
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useState } from 'react';
-import { type Comic } from './types/comic';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { type Comic } from '../../types/comic';
 
 interface ComicModalProps {
   comic: Comic;

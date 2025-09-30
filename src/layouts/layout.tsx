@@ -6,8 +6,8 @@ const Layout = () => {
      const navItems = [
     { to: '/', label: 'Inicio' },
     { to: '/videos', label: 'Videos' },
-    { to: '/info', label: 'Comics' },
-    { to: '/info', label: 'Infografia' },
+    { to: '/comics', label: 'Comics' },
+    { to: '/infografias', label: 'Infografias' },
   ];
   return (
     <div className="min-h-screen flex flex-col">
@@ -15,7 +15,7 @@ const Layout = () => {
         brandName="3 Leyes"
         navItems={navItems}
       />
-      <main className="flex-grow container mx-auto px-4 py-6">
+      <main className=" w-full">
         <Outlet />
       </main>
     </div>
