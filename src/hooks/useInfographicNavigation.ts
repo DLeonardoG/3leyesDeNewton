@@ -1,5 +1,5 @@
 // hooks/useInfographicNavigation.ts
-import { Infographic } from '@/types/infographic';
+import { type Infographic } from '@/types/infographic';
 
 export function useInfographicNavigation() {
   const openInfographic = (infographic: Infographic) => {

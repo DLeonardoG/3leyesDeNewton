@@ -15,7 +15,7 @@ import {
 //   Minimize2,
   ExternalLink
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface InfographicModalProps {
@@ -29,7 +29,7 @@ export default function InfographicModal({
   isOpen,
   onClose,
 }: InfographicModalProps) {
-  const [isFullscreen, setIsFullscreen] = useState(true); // Siempre fullscreen por defecto en PC
+//   const [isFullscreen, setIsFullscreen] = useState(true); // Siempre fullscreen por defecto en PC
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   // En móvil, no deberíamos mostrar el modal, pero por si acaso

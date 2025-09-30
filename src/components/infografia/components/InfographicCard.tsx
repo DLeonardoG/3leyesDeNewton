@@ -12,22 +12,22 @@ interface InfographicCardProps {
   onSelect: (infographic: Infographic) => void;
 }
 
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20,
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
-      delay: 0.1
-    }
-  }
-};
+// const cardVariants = {
+//   hidden: { 
+//     opacity: 0, 
+//     y: 20,
+//   },
+//   visible: { 
+//     opacity: 1, 
+//     y: 0,
+//     transition: {
+//       type: "spring",
+//       stiffness: 100,
+//       damping: 15,
+//       delay: 0.1
+//     }
+//   }
+// };
 
 export default function InfographicCard({ 
   infographic, 
@@ -43,7 +43,6 @@ export default function InfographicCard({
 
   return (
     <motion.div
-      variants={cardVariants}
       className="h-full"
     >
       <Card 

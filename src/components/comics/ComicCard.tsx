@@ -12,28 +12,29 @@ interface ComicCardProps {
   onSelect: (comic: Comic) => void;
 }
 
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 20,
-    scale: 0.9
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15
-    }
-  }
-};
+// const cardVariants = {
+//   hidden: { 
+//     opacity: 0, 
+//     y: 20,
+//     scale: 0.9
+//   },
+//   visible: { 
+//     opacity: 1, 
+//     y: 0,
+//     scale: 1,
+//     transition: {
+//       type: "spring",
+//       stiffness: 100,
+//       damping: 15
+//     }
+//   }
+// };
 
-export default function ComicCard({ comic, index, onSelect }: ComicCardProps) {
+export default function ComicCard({ comic, 
+  // index,
+   onSelect }: ComicCardProps) {
   return (
     <motion.div
-      variants={cardVariants}
       className="h-full"
     >
       <Card 
