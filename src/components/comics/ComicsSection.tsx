@@ -23,6 +23,41 @@ pages: [
       { id: '1-3', image: '/comics/primera_ley-006.png', title: 'Página 6' },
     ]
   },
+  {
+    id: '2',
+    title: 'Segunda Ley de newton',
+    image: '/comics/segunda_ley/segunda_ley-001.png',
+    description: 'Sgunda Ley',
+    author: '',
+    publishedDate: '2024',
+    category: 'Aventura',
+pages: [
+      { id: '1-1', image: '/comics/segunda_ley/segunda_ley-001.png', title: 'Página 1' },
+      { id: '1-2', image: '/comics/segunda_ley/segunda_ley-002.png', title: 'Página 2' },
+      { id: '1-3', image: '/comics/segunda_ley/segunda_ley-003.png', title: 'Página 3' },
+      { id: '1-3', image: '/comics/segunda_ley/segunda_ley-004.png', title: 'Página 4' },
+      { id: '1-3', image: '/comics/segunda_ley/segunda_ley-005.png', title: 'Página 5' },
+      { id: '1-3', image: '/comics/segunda_ley/segunda_ley-006.png', title: 'Página 6' },
+    ]
+  },
+  {
+    id: '3',
+    title: 'Tercera Ley de newton',
+    image: '/comics/tercera_ley/tercera_ley_de_newton_-001.png',
+    description: 'Tercera Ley',
+    author: '',
+    publishedDate: '2024',
+    category: 'Aventura',
+pages: [
+      { id: '1-1', image: '/comics/tercera_ley/tercera_ley_de_newton_-001.png', title: 'Página 1' },
+      { id: '1-2', image: '/comics/tercera_ley/tercera_ley_de_newton_-002.png', title: 'Página 2' },
+      { id: '1-3', image: '/comics/tercera_ley/tercera_ley_de_newton_-003.png', title: 'Página 3' },
+      { id: '1-3', image: '/comics/tercera_ley/tercera_ley_de_newton_-004.png', title: 'Página 4' },
+      { id: '1-3', image: '/comics/tercera_ley/tercera_ley_de_newton_-005.png', title: 'Página 5' },
+      { id: '1-3', image: '/comics/tercera_ley/tercera_ley_de_newton_-006.png', title: 'Página 6' },
+    ]
+  },
+  
 
 ];
 
