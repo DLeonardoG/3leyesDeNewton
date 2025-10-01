@@ -7,22 +7,16 @@ import { useInfographicNavigation } from '@/hooks/useInfographicNavigation';
 // Datos de ejemplo para infografías PDF
 const mockInfographics: Infographic[] = [
   {
-    id: '1',
-    title: 'Leyes de Newton - Resumen Completo',
-    pdfUrl: '/pdf/Línea de tiempo Newton.pdf',
-    description: 'Infografía detallada sobre la linea de tiempo de las leyes de Newton'
-  },
-  {
     id: '2',
-    title: 'Leyes de Newton - infografia',
+    title: 'Leyes de Newton',
     pdfUrl: '/pdf/newton.pdf',
-    description: 'Infografía detallada sobre la linea de tiempo de las leyes de Newton'
+    description: 'Breve resumen de cada una de las leyes con ejemplos'
   },
   {
     id: '3',
-    title: 'Leyes',
+    title: 'Tercera ley',
     pdfUrl: 'https://view.genially.com/65f31e7f787a8c00137ec46f/interactive-content-infografia-cinturon-de-seguridad',
-    description: 'Infografía detallada sobre la tercera ley de Newton'
+    description: 'Uso del cinturón de seguridad'
   },
 ];
 
