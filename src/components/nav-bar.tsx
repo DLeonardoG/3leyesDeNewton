@@ -27,9 +27,10 @@ interface HeaderProps {
   brandName: string;
   navItems: NavItem[];
   evaluateUrl?: string; // Nueva prop opcional para la URL de evaluate
+  pdfLink?: string; // Nueva prop opcional para la URL de evaluate
 }
 
-const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "https://wordwall.net/es/resource/98587855/f%c3%adsica/leyes-de-newton" }) => {
+const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "https://wordwall.net/es/resource/98587855/f%c3%adsica/leyes-de-newton", pdfLink = "/pdf/Línea de tiempo Newton.pdf" }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -39,6 +40,9 @@ const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "htt
 
   const handleEvaluateClick = () => {
     window.open(evaluateUrl, '_blank', 'noopener,noreferrer');
+  };
+  const handlePdfClick = () => {
+    window.open(pdfLink, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -77,6 +81,16 @@ const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "htt
             ))}
             
             {/* Botón Evaluate para desktop */}
+            <NavigationMenuItem>
+              <Button
+                variant="default"
+                className="ml-2 bg-gradient-to-r from-blue-900 to-purple-900 hover:from-blue-800 hover:to-purple-700 text-white"
+                onClick={handlePdfClick}
+              >
+                Timeline
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </Button>
+            </NavigationMenuItem>
             <NavigationMenuItem>
               <Button
                 variant="default"
@@ -136,6 +150,16 @@ const Header: React.FC<HeaderProps> = ({ brandName, navItems, evaluateUrl = "htt
                   onClick={handleEvaluateClick}
                 >
                   Evaluate
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button
+                  variant="default"
+                  className="mt-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                  onClick={handlePdfClick}
+                >
+                  Timeline
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </SheetClose>

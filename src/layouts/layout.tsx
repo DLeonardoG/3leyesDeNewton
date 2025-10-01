@@ -8,7 +8,6 @@ const Layout = () => {
     { to: '/videos', label: 'Videos' },
     { to: '/comics', label: 'Comics' },
     { to: '/infografias', label: 'Infografias' },
-    { to: '/timeline', label: 'Linea de tiempo' },
   ];
   return (
     <div className="min-h-screen flex flex-col">
