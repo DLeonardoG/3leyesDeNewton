@@ -7,7 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardHeader,
+  // CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
@@ -20,11 +20,12 @@ const slides = [
     subtitle: "Ley de Inercia",
     content:
       "Un cuerpo permanece en reposo o en movimiento rectilíneo uniforme a menos que una fuerza externa actúe sobre él.",
-    bg: "bg-gradient-to-r from-amber-100/70 to-orange-200/70",
+    bg: "bg-gradient-to-r from-amber-500/20 to-orange-600/20",
+    border: "border-amber-500/30",
+    text: "text-amber-400",
     example:
       "Cuando un vehículo frena bruscamente, tu cuerpo se inclina hacia adelante por inercia.",
-    image:
-      "/sliders/primera.jpeg",
+    image: "/sliders/primera.jpeg",
   },
   {
     id: 2,
@@ -32,22 +33,24 @@ const slides = [
     subtitle: "Ley Fundamental de la Dinámica",
     content:
       "La fuerza neta aplicada sobre un cuerpo es proporcional a la aceleración que adquiere.",
-    bg: "bg-gradient-to-r from-green-500/70 to-teal-600/70",
+    bg: "bg-gradient-to-r from-green-500/20 to-teal-600/20",
+    border: "border-green-500/30",
+    text: "text-green-400",
     example:
       "Empujar un carrito de supermercado: a mayor fuerza, mayor aceleración.",
-    image:
-      "/sliders/segunda.jpeg",
+    image: "/sliders/segunda.jpeg",
   },
   {
     id: 3,
     title: "Tercera Ley de Newton",
     subtitle: "Ley de Acción-Reacción",
     content: "Por cada acción hay una reacción igual y opuesta.",
-    bg: "bg-gradient-to-r from-amber-500/70 to-orange-600/70",
+    bg: "bg-gradient-to-r from-amber-500/20 to-orange-600/20",
+    border: "border-amber-500/30",
+    text: "text-amber-400",
     example:
       "Al caminar, empujas el suelo hacia atrás (acción) y el suelo te empuja hacia adelante (reacción).",
-    image:
-      "/sliders/tercera.jpeg",
+    image: "/sliders/tercera.jpeg",
   },
 ];
 
@@ -118,18 +121,18 @@ const Home = () => {
   };
 
   return (
-    <section className="w-full h-full min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-8 px-4">
+    <section className="w-full h-full min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-8 px-4 dark">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h1
             ref={titleRef}
-            className="text-4xl md:text-5xl font-bold text-slate-800 mb-4"
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
             Bienvenidos!!!
           </h1>
           <p
             ref={subtitleRef}
-            className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto"
           >
             Las tres leyes que ya usas sin darte cuenta, explicada con ejemplos
             reales.
@@ -137,19 +140,19 @@ const Home = () => {
         </div>
 
         {/* Carousel Section */}
-        <div className="mb-16 rounded-xl overflow-hidden w-[16/9]  shadow-xl">
+        <div className="mb-16 rounded-xl overflow-hidden w-[16/9] shadow-2xl shadow-black/50">
           <div className="relative w-full">
             {/* Carousel */}
             <div className="overflow-hidden relative h-96 md:h-[500px] rounded-xl">
               <div
                 ref={containerRef}
-                className="flex transition-transform duration-700  ease-in-out h-full"
+                className="flex transition-transform duration-700 ease-in-out h-full"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {slides.map((slide) => (
                   <div
                     key={slide.id}
-                    className="flex-shrink-0 w-full  h-full relative"
+                    className="flex-shrink-0 w-full h-full relative"
                   >
                     {/* Background Image Only */}
                     <img
@@ -158,10 +161,11 @@ const Home = () => {
                       className="w-full h-full object-contain"
                     />
 
-                    {/* Gradient Overlay */}
-                    <div
-                      className={`absolute inset-0 bg-black opacity-20`}
-                    />
+                    {/* Dark Overlay */}
+                    <div className="absolute inset-0 bg-black/40" />
+                    
+                    {/* Content Overlay */}
+                    
                   </div>
                 ))}
               </div>
@@ -171,7 +175,7 @@ const Home = () => {
                 onClick={prevSlide}
                 variant="outline"
                 size="icon"
-                className="absolute top-1/2 left-5 -translate-y-1/2 size-12 bg-white/80 hover:bg-white rounded-full shadow-lg z-20"
+                className="absolute top-1/2 left-5 -translate-y-1/2 size-12 bg-black/50 hover:bg-black/70 border-slate-600 text-white rounded-full shadow-lg z-20 backdrop-blur-sm"
               >
                 <ChevronLeft className="h-6 w-6" />
                 <span className="sr-only">Previous</span>
@@ -181,7 +185,7 @@ const Home = () => {
                 onClick={nextSlide}
                 variant="outline"
                 size="icon"
-                className="absolute top-1/2 right-5 -translate-y-1/2 size-12 bg-white/80 hover:bg-white rounded-full shadow-lg z-20"
+                className="absolute top-1/2 right-5 -translate-y-1/2 size-12 bg-black/50 hover:bg-black/70 border-slate-600 text-white rounded-full shadow-lg z-20 backdrop-blur-sm"
               >
                 <ChevronRight className="h-6 w-6" />
                 <span className="sr-only">Next</span>
@@ -198,7 +202,7 @@ const Home = () => {
                     className={`h-3 w-3 rounded-full transition-all duration-300 ${
                       currentIndex === idx
                         ? "bg-white scale-125"
-                        : "bg-white/50"
+                        : "bg-white/30"
                     }`}
                   />
                 ))}
@@ -212,7 +216,7 @@ const Home = () => {
           {slides.map((slide) => (
             <Card
               key={slide.id}
-              className="newton-car overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className={`newton-card overflow-hidden border-2 ${slide.border} bg-slate-800/50 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 group hover:scale-105`}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
@@ -220,41 +224,26 @@ const Home = () => {
                   alt={slide.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 ${slide.bg} opacity-80`} />
+                <div className={`absolute inset-0 ${slide.bg}`} />
                 <div className="absolute bottom-4 left-4 text-white">
                   <CardTitle className="text-xl">{slide.title}</CardTitle>
-                  <CardDescription className="text-white/90">
+                  <CardDescription className="text-slate-200">
                     {slide.subtitle}
                   </CardDescription>
                 </div>
               </div>
               <CardContent className="pt-6">
-                <p className="mb-4 text-slate-700">{slide.content}</p>
-                <div className="bg-slate-100 p-3 rounded-lg">
-                  <p className="text-sm text-slate-700 italic">
-                    Ejemplo: {slide.example}
+                <p className="mb-4 text-slate-300">{slide.content}</p>
+                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+                  <p className="text-sm text-slate-300 italic">
+                    <span className="font-semibold">Ejemplo: </span>
+                    {slide.example}
                   </p>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
-
-        {/* CTA Section */}
-        {/* <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-xl">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">¿Quieres aprender más?</h2>
-          <p className="text-lg mb-6 max-w-2xl mx-auto">
-            Explora nuestro contenido interactivo para entender cómo las Leyes de Newton gobiernan cada aspecto de tu vida diaria.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
-              Comenzar Tutorial
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Ver Ejemplos
-            </Button>
-          </div>
-        </div> */}
       </div>
     </section>
   );
