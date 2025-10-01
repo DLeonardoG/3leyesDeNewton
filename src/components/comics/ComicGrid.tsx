@@ -26,7 +26,7 @@ export default function ComicGrid({ comics, onComicSelect }: ComicGridProps) {
   const getGridCols = () => {
     if (isMobile) return 'grid-cols-1';
     if (isTablet) return 'grid-cols-2';
-    return 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
+    return 'grid-cols-2 lg:grid-cols-3 xl:grid-cols-3';
   };
 
   return (

@@ -12,7 +12,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header 
-        brandName="3 Leyes"
+        brandName="Newton"
         navItems={navItems}
       />
       <main className=" w-full">

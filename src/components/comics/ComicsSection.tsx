@@ -10,7 +10,7 @@ const mockComics: Comic[] = [
     id: '1',
     title: 'Primera Ley de newton',
     image: '/comics/primera_ley-001.png',
-    description: 'Primera Ley',
+    description: 'Newton viaja al futuro y descubre cómo su ley de la inercia explica el uso del cinturón de seguridad para protegernos cuando un auto frena de golpe.',
     author: '',
     publishedDate: '2024',
     category: 'Ciencia',
@@ -27,7 +27,7 @@ pages: [
     id: '2',
     title: 'Segunda Ley de newton',
     image: '/comics/segunda_ley/segunda_ley-001.png',
-    description: 'Sgunda Ley',
+    description: 'En otro viaje al futuro, Newton aprende que para una buena aceleración en un vehículo no basta con un motor grande: hay que considerar también su masa según su segunda ley.',
     author: '',
     publishedDate: '2024',
     category: 'Ciencia',
@@ -44,7 +44,7 @@ pages: [
     id: '3',
     title: 'Tercera Ley de newton',
     image: '/comics/tercera_ley/tercera_ley_de_newton_-001.png',
-    description: 'Tercera Ley',
+    description: 'Newton es invitado a volar en un cohete espacial y comprende cómo su tercera ley —acción y reacción— hace posible que estas enormes máquinas se eleven.',
     author: '',
     publishedDate: '2024',
     category: 'Ciencia',
@@ -82,7 +82,7 @@ function ComicsSectionContent() {
             Biblioteca de Cómics
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Comics ilustrativos 
+            Tres historietas que convierten las Leyes de Newton en aventuras fáciles de entender y recordar.
           </p>
         </div>
 

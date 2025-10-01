@@ -74,9 +74,9 @@ export default function ComicCard({ comic,
         </div>
 
         <CardContent className="p-4 sm:p-6">
-          <h3 className="font-bold text-lg sm:text-xl text-white mb-2 line-clamp-2 leading-tight">
+          {/* <h3 className="font-bold text-lg sm:text-xl text-white mb-2 line-clamp-2 leading-tight">
             {comic.title}
-          </h3>
+          </h3> */}
           
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed line-clamp-3 mb-4">
             {comic.description}
